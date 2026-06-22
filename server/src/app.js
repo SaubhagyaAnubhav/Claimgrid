@@ -7,9 +7,15 @@ require("dotenv").config();
 
 const app = express();
 
+// Sanitize CLIENT_URL (strip trailing slash for exact CORS matching)
+let clientOrigin = process.env.CLIENT_URL || "*";
+if (clientOrigin !== "*" && clientOrigin.endsWith("/")) {
+  clientOrigin = clientOrigin.slice(0, -1);
+}
+
 // ─── Middleware ───────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.CLIENT_URL || "*",
+  origin: clientOrigin,
   methods: ["GET", "POST"],
 }));
 app.use(express.json());

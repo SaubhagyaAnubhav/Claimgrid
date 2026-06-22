@@ -5,12 +5,18 @@ const connectDB = require("./config/db");
 const seedGrid = require("./utils/seedGrid");
 const gridSocket = require("./sockets/gridSocket");
 
+// Sanitize CLIENT_URL (strip trailing slash for exact CORS matching)
+let clientOrigin = process.env.CLIENT_URL || "*";
+if (clientOrigin !== "*" && clientOrigin.endsWith("/")) {
+  clientOrigin = clientOrigin.slice(0, -1);
+}
+
 // ─── HTTP + Socket.IO server ──────────────────────────────────────────────────
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || "*",
+    origin: clientOrigin,
     methods: ["GET", "POST"],
   },
 });
