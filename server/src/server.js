@@ -1,37 +1,9 @@
-const express = require("express");
 const http = require("http");
-const cors = require("cors");
 const { Server } = require("socket.io");
+const app = require("./app");
 const connectDB = require("./config/db");
 const seedGrid = require("./utils/seedGrid");
-const gridRoutes = require("./routes/gridRoutes");
-const userRoutes = require("./routes/userRoutes");
 const gridSocket = require("./sockets/gridSocket");
-require("dotenv").config();
-
-const app = express();
-
-// ─── Middleware ───────────────────────────────────────────────────────────────
-app.use(cors({
-  origin: process.env.CLIENT_URL || "*",
-  methods: ["GET", "POST"],
-}));
-app.use(express.json());
-
-// ─── Health check ─────────────────────────────────────────────────────────────
-app.get("/", (req, res) => {
-  res.json({ status: "ok", message: "ClaimGrid backend is running " });
-});
-
-// ─── API Routes ───────────────────────────────────────────────────────────────
-app.use("/api/grid", gridRoutes);
-app.use("/api/users", userRoutes);
-
-// Convenience alias so /api/leaderboard also works directly
-app.use("/api/leaderboard", (req, res, next) => {
-  req.url = "/leaderboard";
-  userRoutes(req, res, next);
-});
 
 // ─── HTTP + Socket.IO server ──────────────────────────────────────────────────
 const server = http.createServer(app);
