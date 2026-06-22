@@ -8,7 +8,9 @@
   padding: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
 }
@@ -21,43 +23,101 @@ body {
 }
 
 /* ── Scrollbar ─────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #12121a; }
-::-webkit-scrollbar-thumb { background: #2d2d3d; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3d3d52; }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #12121a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2d3d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3d52;
+}
 
 /* ── Tile pulse animation ──────────────────────────── */
 @keyframes tilePulse {
-  0%   { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); transform: scale(1.15); }
-  70%  { box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); transform: scale(1.08); }
-  100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); transform: scale(1); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+    transform: scale(1.15);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(139, 92, 246, 0);
+    transform: scale(1.08);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+    transform: scale(1);
+  }
 }
-.tile-pulse { animation: tilePulse 0.5s ease-out forwards; }
+
+.tile-pulse {
+  animation: tilePulse 0.5s ease-out forwards;
+}
 
 /* ── Toast slide-in ────────────────────────────────── */
 @keyframes toastIn {
-  from { transform: translateX(110%); opacity: 0; }
-  to   { transform: translateX(0);    opacity: 1; }
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+
 @keyframes toastOut {
-  from { transform: translateX(0);    opacity: 1; }
-  to   { transform: translateX(110%); opacity: 0; }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(110%);
+    opacity: 0;
+  }
 }
-.toast-in  { animation: toastIn  0.3s ease-out forwards; }
-.toast-out { animation: toastOut 0.3s ease-in  forwards; }
+
+.toast-in {
+  animation: toastIn 0.3s ease-out forwards;
+}
+
+.toast-out {
+  animation: toastOut 0.3s ease-in forwards;
+}
 
 /* ── Activity feed item slide ──────────────────────── */
 @keyframes activitySlide {
-  from { transform: translateY(-8px); opacity: 0; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-.activity-in { animation: activitySlide 0.25s ease-out forwards; }
+
+.activity-in {
+  animation: activitySlide 0.25s ease-out forwards;
+}
 
 /* ── Join screen gradient ──────────────────────────── */
 .hero-gradient {
   background: radial-gradient(ellipse at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-              #0a0a0f;
+    radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+    #0a0a0f;
 }
 
 /* ── Glass card ─────────────────────────────────────── */
@@ -73,6 +133,7 @@ body {
   overflow: hidden;
   transition: all 0.2s ease;
 }
+
 .btn-glow::before {
   content: '';
   position: absolute;
@@ -81,5 +142,11 @@ body {
   opacity: 0;
   transition: opacity 0.2s;
 }
-.btn-glow:hover::before { opacity: 1; }
-.btn-glow:active { transform: scale(0.98); }
+
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+.btn-glow:active {
+  transform: scale(0.98);
+}
